@@ -7,13 +7,12 @@ ENV PATH="/home/user/.local/bin:$PATH"
 
 WORKDIR /app
 
-# نسخ ملف الـ requirements من جوه فولدر backend وتصطيب المكتبات
-COPY --chown=user ./backend/requirements.txt /app/requirements.txt
+# نسخ ملف الـ requirements من مكانه المباشر جوه الفولدر
+COPY --chown=user requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-# نسخ فولدر الـ artifacts والـ backend بالكامل جوه الـ container
-COPY --chown=user ./artifacts /app/artifacts
-COPY --chown=user ./backend /app
+# نسخ كل الملفات اللي جوه الـ backend للـ container
+COPY --chown=user . /app
 
-# تشغيل السيرفر من المسار المظبوط
+# تشغيل السيرفر
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
