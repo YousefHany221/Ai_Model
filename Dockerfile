@@ -7,12 +7,13 @@ ENV PATH="/home/user/.local/bin:$PATH"
 
 WORKDIR /app
 
-# نسخ ملف الـ requirements وتصطيب المكتبات (الملف جنبه علطول دلوقتي)
-COPY --chown=user requirements.txt /app/requirements.txt
+# نسخ ملف الـ requirements وتصطيب المكتبات
+COPY --chown=user ./backend/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-# نسخ كل ملفات الكود (main.py, db.py, إلخ) اللي جنبه جوه الـ container
-COPY --chown=user . /app
+# نسخ فولدر الـ artifacts والـ backend بالكامل جوه الـ container
+COPY --chown=user ./artifacts /app/artifacts
+COPY --chown=user ./backend /app
 
-# تشغيل السيرفر من الـ app علطول
+# تشغيل السيرفر على بورت 8080 (البورت المثالي لـ Railway)
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
