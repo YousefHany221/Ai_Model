@@ -1,0 +1,10 @@
+{
+  "img_size": [
+    224,
+    224
+  ],
+  "embedding_dim": 128,
+  "color_mode": "grayscale_stacked_3ch",
+  "normalization": "divide_by_255",
+  "l2_normalize": true
+}

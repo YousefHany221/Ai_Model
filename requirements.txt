@@ -1,0 +1,18 @@
+# NBIS FastAPI service — Python 3.10+
+
+# API
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.12
+pydantic==2.9.2
+
+# ML / inference — match your training environment
+# NOTE: do NOT add standalone `keras` here. TF 2.13–2.17 bundle tf.keras
+# internally. Installing the standalone `keras` package (Keras 3.x) would
+# shadow tf.keras and break .keras model deserialization with errors like
+# "Could not deserialize class 'Functional'" /
+# "keras.src.models.functional cannot be imported".
+tensorflow==2.17.0
+faiss-cpu==1.8.0.post1
+numpy==1.26.4
+pillow==10.4.0
